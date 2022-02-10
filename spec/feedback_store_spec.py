@@ -43,4 +43,9 @@ with describe("Given a feedback store") as self:
                     ),
                 ) as mocked_open:
                     feedback = FeedbackStoreImpl().get_feedback()
-                expect(feedback[0].json()).to(equal('{"name": "A", "score": 5, "comment": "T"}'))
+                json = f"[{', '.join([f.json() for f in feedback])}]"
+                expect(json).to(
+                    equal(
+                        '[{"name": "A", "score": 5, "comment": "T"}, {"name": "B", "score": 7, "comment": "T"}, {"name": "C", "score": 10, "comment": "T"}]'
+                    )
+                )
