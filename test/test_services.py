@@ -20,9 +20,19 @@ def test_get_course_returns_stored_course():
     # Given
     expected_course = Course(course_name="A")
     course_store = FakeCourseStore(course=expected_course)
-
     # When
     retrieved_course = CourseServices(course_store=course_store).get_course()
+    # Then
+    assert retrieved_course == expected_course
 
+
+def test_store_course_returns_newly_stored_course():
+    # Given
+    expected_course = Course(course_name="A")
+    course_store = FakeCourseStore(course=None)
+    course_service = CourseServices(course_store=course_store)
+    # When
+    course_service.store_course(expected_course)
+    retrieved_course = course_service.get_course()
     # Then
     assert retrieved_course == expected_course
