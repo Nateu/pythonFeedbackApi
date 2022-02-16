@@ -15,3 +15,10 @@ class Feedback(BaseModel):
 
     class Config:
         allow_population_by_field_name = True
+
+
+class Average(BaseModel):
+    score: float = Field(alias="score")
+
+    class Config:
+        allow_population_by_field_name = True

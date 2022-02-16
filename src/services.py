@@ -1,5 +1,5 @@
-from src.abc import CourseStore
-from src.models import Course
+from src.abc import CourseStore, FeedbackStore
+from src.models import Course, Feedback
 
 
 class CourseServices:
@@ -11,3 +11,14 @@ class CourseServices:
 
     def store_course(self, course: Course):
         self._course_store.create_course(course)
+
+
+class FeedbackServices:
+    def __init__(self, feedback_store: FeedbackStore):
+        self._feedback_store = feedback_store
+
+    def add_feedback(self, feedback: Feedback):
+        self._feedback_store.add_feedback(feedback=feedback)
+
+    def get_feedback(self):
+        return self._feedback_store.get_feedback()
